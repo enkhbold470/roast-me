@@ -45,7 +45,7 @@ export default function Home() {
 
       const video = videoRef.current;
       // Use an offscreen canvas (no DOM element styling needed)
-      const canvas = document.createElement("canvas");
+      const canvas = document.createElement("canvas");``
 
       const targetWidth = 640;
       const ratio = video.videoHeight ? video.videoWidth / video.videoHeight : 1.7778;
