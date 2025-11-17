@@ -1,36 +1,47 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Gork – Roast Cam Quickstart
 
-## Getting Started
+Generate a concise, PG‑13 roast from your webcam photo and hear it yelled out loud using OpenAI’s `gpt-4o-mini` (vision) and `gpt-4o-mini-tts` (text‑to‑speech).
 
-First, run the development server:
+## Requirements
+- Node.js 18.18+ (or 20+ recommended)
+- Package manager: pnpm (preferred), npm, yarn, or bun
+- OpenAI API key with access to `gpt-4o-mini` and `gpt-4o-mini-tts`
 
+## Setup
+1. Create `.env.local` in the project root:
+   ```bash
+   echo "OPENAI_API_KEY=sk-..." > .env.local
+   ```
+2. Install dependencies:
+   ```bash
+   pnpm i
+   # or: npm install | yarn | bun install
+   ```
+
+## Run (Development)
 ```bash
-npm run dev
-# or
-yarn dev
-# or
 pnpm dev
-# or
-bun dev
+# or: npm run dev | yarn dev | bun dev
+```
+Open http://localhost:3000, allow camera access, then click “Roast me”. The app captures a frame, sends it to OpenAI for a witty roast, converts it to MP3, and auto‑plays the audio.
+
+## Production
+```bash
+pnpm build && pnpm start
+# or: npm run build && npm run start
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Commands
+- `pnpm dev`: Start Next.js dev server
+- `pnpm build`: Production build
+- `pnpm start`: Run the production server
+- `pnpm lint`: Lint with Next.js ESLint config
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Configuration Tips
+- Voice/model: Edit `app/api/roast/route.ts` (`model: "gpt-4o-mini"`, TTS `model: "gpt-4o-mini-tts"`, `voice: "alloy"`).
+- Imports: Use `@/...` absolute paths (see `tsconfig.json`).
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Troubleshooting
+- 401/403 from API: Check `OPENAI_API_KEY` in `.env.local` and restart.
+- Camera blocked: Enable camera permissions in your browser.
+- No audio: Ensure volume is up; the audio element provides controls and should auto‑play after generation.
