@@ -102,7 +102,7 @@ export default function Home() {
               onClick={captureAndRoast}
               disabled={!streamOn || loading}
               aria-label="Roast me"
-              className="group relative inline-flex items-center gap-6 overflow-hidden bg-pink-600 hover:bg-pink-700 text-white shadow-2xl hover:shadow-2xl transition-all duration-300 hover:scale-[1.02] focus-visible:ring-[4px] focus-visible:ring-ring/50 active:scale-95 px-14 py-7 rounded-3xl text-3xl md:text-4xl leading-none min-w-[22rem]"
+              className="group relative inline-flex items-center gap-6 overflow-hidden bg-pink-600 hover:bg-pink-700 text-white shadow-2xl hover:shadow-2xl transition-all duration-300 hover:scale-[1.02]  focus-visible:ring-ring/50 active:scale-95 px-14 py-7 rounded-3xl text-3xl md:text-4xl leading-none min-w-[22rem]"
             >
               <Flame className="size-10 md:size-12" aria-hidden="true" />
               <span className="font-semibold tracking-wide">
