@@ -1,10 +1,11 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader } from "@/components/ui/card";
 
 export default function Home() {
   const videoRef = useRef<HTMLVideoElement | null>(null);
-  const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const [streamOn, setStreamOn] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -40,10 +41,11 @@ export default function Home() {
       setRoastText("");
       setAudioUrl(null);
 
-      if (!videoRef.current || !canvasRef.current) return;
+      if (!videoRef.current) return;
 
       const video = videoRef.current;
-      const canvas = canvasRef.current;
+      // Use an offscreen canvas (no DOM element styling needed)
+      const canvas = document.createElement("canvas");
 
       const targetWidth = 640;
       const ratio = video.videoHeight ? video.videoWidth / video.videoHeight : 1.7778;
@@ -79,33 +81,28 @@ export default function Home() {
   };
 
   return (
-    <main className="flex min-h-screen flex-col items-center gap-6 p-6">
-      <h1 className="text-2xl font-semibold">Roast Me (PG-13)</h1>
-      <p className="text-sm text-zinc-600">
-        Allow camera access, capture a frame, generate a playful roast, and hear it aloud.
-      </p>
-
-      <div className="flex flex-col items-center gap-3">
-        <video ref={videoRef} className="rounded-md border" playsInline muted autoPlay />
-        <canvas ref={canvasRef} className="hidden" />
-        <button
-          onClick={captureAndRoast}
-          disabled={!streamOn || loading}
-          className="rounded-full bg-black px-5 py-2 text-white disabled:opacity-50 dark:bg-white dark:text-black"
-        >
-          {loading ? "Roasting..." : "Roast me"}
-        </button>
+    <main className="page">
+      <div className="container">
+        <Card>
+          <CardHeader className="stack-sm text-center">
+            <h1 className="h1">Roast Cam</h1>
+            <p className="muted">Allow camera access, capture a frame, get a concise PG‑13 roast, and hear it aloud.</p>
+          </CardHeader>
+          <CardContent className="stack-md stack-center">
+            <video ref={videoRef} className="video" playsInline muted autoPlay />
+            <Button onClick={captureAndRoast} disabled={!streamOn || loading}>
+              {loading ? "Roasting..." : "Roast me"}
+            </Button>
+            {error && <p>{error}</p>}
+            {roastText && (
+              <div>
+                <p>{roastText}</p>
+              </div>
+            )}
+            {audioUrl && <audio src={audioUrl} controls autoPlay />}
+          </CardContent>
+        </Card>
       </div>
-
-      {error && <p className="text-sm text-red-600">{error}</p>}
-      {roastText && (
-        <div className="max-w-xl rounded-lg border p-4">
-          <p className="text-base">{roastText}</p>
-        </div>
-      )}
-      {audioUrl && (
-        <audio src={audioUrl} controls autoPlay className="w-full max-w-xl" />
-      )}
     </main>
   );
 }

@@ -1,0 +1,14 @@
+import * as React from "react";
+
+export function Card({ className = "", ...props }: React.HTMLAttributes<HTMLDivElement>) {
+  return <div className={["card", className].filter(Boolean).join(" ")} {...props} />;
+}
+
+export function CardHeader({ className = "", ...props }: React.HTMLAttributes<HTMLDivElement>) {
+  return <div className={["card-header", className].filter(Boolean).join(" ")} {...props} />;
+}
+
+export function CardContent({ className = "", ...props }: React.HTMLAttributes<HTMLDivElement>) {
+  return <div className={["card-content", className].filter(Boolean).join(" ")} {...props} />;
+}
+
