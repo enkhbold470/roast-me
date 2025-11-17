@@ -91,3 +91,6 @@ Please reply in a concise style. Avoid unnecessary repetition or filler language
 - Node: pnpm
 - use pnpm add openai only for any AI
 - for placeholder images, use https://placekeanu.com/500
+
+
+only use <Link> tag from nextjs instead of <a> tag

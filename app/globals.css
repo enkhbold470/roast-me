@@ -121,6 +121,30 @@
   }
 }
 
+/* Global button cursor behaviors */
+@layer base {
+  button,
+  [type="button"],
+  [type="submit"],
+  [type="reset"],
+  [role="button"],
+  a,
+  a[href],
+  [role="link"] {
+    @apply cursor-pointer;
+  }
+
+  button:disabled,
+  [type="button"]:disabled,
+  [type="submit"]:disabled,
+  [type="reset"]:disabled,
+  [role="button"][aria-disabled="true"],
+  a[aria-disabled="true"],
+  [role="link"][aria-disabled="true"] {
+    @apply cursor-not-allowed;
+  }
+}
+
 /* Minimal layout and UI primitives (no hard-coded colors) */
 .page {
   min-height: 100vh;
