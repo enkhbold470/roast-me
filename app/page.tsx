@@ -121,7 +121,7 @@ export default function Home() {
             )}
             {audioUrl && <audio src={audioUrl} controls autoPlay />}
 
-            {/* Social / External Links */}
+            {/* Social / External Links
             <div className="flex items-center gap-3 pt-2">
               <Link
                 href="https://enk.icu"
@@ -135,7 +135,7 @@ export default function Home() {
                 <Globe className="size-4" aria-hidden="true" />
                 <span>enk.icu</span>
               </Link>
-            </div>
+            </div> */}
           </CardContent>
         </Card>
         <footer className="mt-2 flex justify-center">
